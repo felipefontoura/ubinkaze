@@ -29,4 +29,4 @@ if [[ $UBINKAZE_REF != "main" ]]; then
 fi
 
 echo "Installation starting..."
-source ~/.local/share/ubinkaze/install.sh
+source ~/.local/share/ubinkaze/base.sh
