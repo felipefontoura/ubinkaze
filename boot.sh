@@ -28,5 +28,11 @@ if [[ $UBINKAZE_REF != "main" ]]; then
   cd - >/dev/null
 fi
 
-echo "Installation starting..."
-source ~/.local/share/ubinkaze/base.sh
+echo "Base installation starting..."
+# source ~/.local/share/ubinkaze/base.sh
+
+echo "Docker Stacks starting..."
+export UBINKAZE_CONFIG=${1:-""}
+if [[ -n "$UBINKAZE_CONFIG" ]]; then
+  source ~/.local/share/ubinkaze/docker.sh
+fi
