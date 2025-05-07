@@ -311,7 +311,6 @@ cat <<EOF >/etc/docker/daemon.json
     },
     "icc": true,
     "live-restore": false,
-    "userland-proxy": false,
     "no-new-privileges": true,
     "default-ulimits": {
         "nofile": {
