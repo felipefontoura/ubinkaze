@@ -15,7 +15,7 @@ An comprehensive post-installation configuration tool for Ubuntu servers, stream
 
 ## 📋 Prerequisites
 
-- Ubuntu Server (20.04)
+- Ubuntu Server (24.04)
 - Root or sudo access
 - Basic command line knowledge
 
