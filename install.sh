@@ -148,11 +148,6 @@ verify_security_settings() {
     failed=1
   fi
 
-  if ! grep -q "PasswordAuthentication no" /etc/ssh/sshd_config; then
-    print_error "SSH password authentication is not disabled"
-    failed=1
-  fi
-
   if ! apparmor_status | grep -q "apparmor module is loaded."; then
     print_error "AppArmor is not loaded"
     failed=1
@@ -374,53 +369,6 @@ if [ -f /root/.ssh/authorized_keys ]; then
   chmod 700 /home/docker/.ssh
   chmod 600 /home/docker/.ssh/authorized_keys
 fi
-
-cat <<EOF >/etc/ssh/sshd_config
-Include /etc/ssh/sshd_config.d/*.conf
-
-Port 22
-AddressFamily inet
-Protocol 2
-
-HostKey /etc/ssh/ssh_host_ed25519_key
-HostKey /etc/ssh/ssh_host_ecdsa_key
-HostKey /etc/ssh/ssh_host_rsa_key
-
-SyslogFacility AUTH
-LogLevel VERBOSE
-
-LoginGraceTime 30
-PermitRootLogin prohibit-password
-StrictModes yes
-MaxAuthTries 10
-MaxSessions 5
-
-PubkeyAuthentication yes
-HostbasedAuthentication no
-IgnoreRhosts yes
-PasswordAuthentication no
-PermitEmptyPasswords no
-ChallengeResponseAuthentication no
-
-UsePAM yes
-AllowAgentForwarding no
-AllowTcpForwarding yes  # Required for Docker forwarding
-X11Forwarding no
-PermitTTY yes
-PrintMotd no
-
-ClientAliveInterval 300
-ClientAliveCountMax 2
-TCPKeepAlive no
-
-AllowUsers docker root
-
-KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256
-Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr
-MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com
-EOF
-
-systemctl reload ssh
 
 # --- Firewall Configuration ---
 print_message "${YELLOW}" "Configuring firewall..."
