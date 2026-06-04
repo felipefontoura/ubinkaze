@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # Production Docker Host Hardening Script (based on https://gist.github.com/rameerez/238927b78f9108a71a77aed34208de11)
-# For Ubuntu Server 24.04 LTS (Noble)
+# For Ubuntu Server 26.04 LTS
 
 set -euo pipefail
 IFS=$'\n\t'
 
 # --- Constants ---
 REQUIRED_OS="Ubuntu"
-REQUIRED_VERSION="24.04"
+REQUIRED_VERSION="26.04"
 MIN_RAM_MB=1024
 MIN_DISK_GB=20
 
