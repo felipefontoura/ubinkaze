@@ -10,7 +10,7 @@ banner='▗▖ ▗▖▗▄▄▖ ▗▄▄▄▖▗▖  ▗▖▗▖ ▗▖ ▗
 '
 
 echo -e "$banner"
-echo "=> Ubinkaze is for fresh Ubuntu Server 24.04 installations only!"
+echo "=> Ubinkaze is for fresh Ubuntu Server 26.04 installations only!"
 echo -e "\nBegin installation (or abort with ctrl+c)..."
 
 sudo apt-get update >/dev/null
